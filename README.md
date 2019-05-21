@@ -41,6 +41,8 @@ RAILS_ENV=production bundle exec rails assets:precompile
 bundle exec rails s -b 0.0.0.0 -p 80 -e production
 ```
 
+Open the application at http://localhost 
+
 #### 3. Check emails
 
 Open the browser to `http://localhost:1080`
