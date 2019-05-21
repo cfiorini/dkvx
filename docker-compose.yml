@@ -1,0 +1,37 @@
+version: "2.0"
+
+services:
+  db:
+      image: postgres:11.2
+      ports:
+          - 5432:5432
+      volumes:
+          - ./db/data:/var/lib/postgresql/data
+      networks:
+          - vx
+  web:
+      build: web
+      ports:
+          - 80:80
+          - 3035:3035
+      volumes:
+          - ./../appvx:/var/www/web
+      links:
+          - db
+          - mailcatcher
+      networks:
+          - vx
+      working_dir: /var/www/
+      environment:
+          - EDITOR=vim
+
+  mailcatcher:
+      image: sj26/mailcatcher
+      ports:
+          - 1080:1080
+          - 1025:1025
+      networks:
+          - vx
+
+networks:
+     vx:
